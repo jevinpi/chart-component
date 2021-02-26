@@ -1,0 +1,85 @@
+{
+  "name": "@ascs-ui/charts",
+  "private": true,
+  "version": "0.0.1",
+  "description": "航天内部图表基础组件",
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "jest": "lerna run test",
+    "lint": "lerna run lint",
+    "build": "yarn run babel && yarn run type:dts",
+    "babel": "yarn run babel:cjs && yarn run babel:esm",
+    "clean": "rm -rf ./packages/**/{lib, esm}",
+    "stylelint": "stylelint src/**/*.scss --syntax scss",
+    "stylelint:fix": "stylelint src/**/*.scss --fix",
+    "eslint": "eslint src/**/*.{ts,tsx}",
+    "eslint:fix": "eslint src/**/*.{ts,tsx} --fix",
+    "prettier": "node ./scripts/prettier.js",
+    "lint-staged": "lint-staged",
+    "prepare-release": "git checkout master && git pull --rebase origin master && yarn run test",
+    "release": "yarn run prepare-release && lerna publish && lerna run gh-pages",
+    "test": "lerna bootstrap && yarn run lint && yarn run jest"
+  },
+  "keywords": [
+    "data",
+    "visualization",
+    "react",
+    "echart",
+    "G2"
+  ],
+  "author": "cityworks",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-decorators": "^7.12.12",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.7",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-typescript": "^8.1.0",
+    "babel-preset-latest": "^6.24.1",
+    "chalk": "^4.1.0",
+    "lerna": "^3.20.2",
+    "lint-staged": "^9.2.1",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.35.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-less": "^1.1.3",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.29.0",
+    "rollup-plugin-uglify": "^6.0.4",
+    "stylelint": "^10.1.0",
+    "stylelint-config-prettier": "^5.2.0",
+    "stylelint-config-standard": "^18.3.0",
+    "typescript": "^4.1.3",
+    "uglifyjs-webpack-plugin": "^2.2.0"
+  },
+  "engines": {
+    "node": ">=8.10.0"
+  },
+  "dependencies": {},
+  "lint-staged": {
+    "**/*.{ts,tsx,scss}": [
+      "node ./scripts/lint-prettier.js",
+      "git add"
+    ],
+    "**/*.{ts,tsx}": "npm run eslint",
+    "**/*.scss": "npm run stylelint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged",
+      "commit-msg": "commitlint -E  HUSKY_GIT_PARAMS"
+    }
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "legacyDecorators": true
+    }
+  },
+  "main": ".eslintrc.js"
+}

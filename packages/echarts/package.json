@@ -1,0 +1,40 @@
+{
+  "name": "@jevin/echarts",
+  "version": "0.0.10",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "types/src/index.d.ts",
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "keywords": [
+    "echart",
+    "react",
+    "visualizations"
+  ],
+  "author": "ascs@tech",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn run build:cjs && yarn run build:esm && yarn run build:umd",
+    "build:esm": "rollup -c --environment FORMAT:esm",
+    "build:umd": "rollup -c --environment FORMAT:umd",
+    "build:cjs": "rollup -c --environment FORMAT:cjs",
+    "build:umd1": "rimraf umd/* && rollup -c --environment FORMAT:umd",
+    "build:cjs1": "npm run clean && rollup -c --environment FORMAT:cjs",
+    "clean": "rm -rf lib/*",
+    "pub": "npm publish --access public"
+  },
+  "dependencies": {
+    "@types/echarts": "^4.9.3",
+    "@types/lodash": "^4.14.167",
+    "@types/react": "^17.0.0",
+    "echarts": "^5.0.0",
+    "lodash": "^4.17.20",
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.12.10"
+  }
+}
